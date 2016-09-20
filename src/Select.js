@@ -54,7 +54,8 @@ const Select = React.createClass({
 		value: React.PropTypes.any,                 // initial field value
 		valueComponent: React.PropTypes.func,       // value component to render
 		valueKey: React.PropTypes.string,           // path of the label value in option objects
-		valueRenderer: React.PropTypes.func         // valueRenderer: function (option) {}
+		valueRenderer: React.PropTypes.func,         // valueRenderer: function (option) {}
+		openOuterUp: React.PropTypes.bool          // value to control the opening direction
 	},
 
 	getDefaultProps () {
@@ -612,7 +613,7 @@ const Select = React.createClass({
 					{this.renderArrow()}
 				</div>
 				{isOpen ? (
-					<div ref="menuContainer" className="Select-menu-outer">
+					<div ref="menuContainer" className={"Select-menu-outer" + (this.props.openOuterUp ? ' Select-menu-outer-up' : '')}>
 						<div ref="menu" className="Select-menu" onScroll={this.handleMenuScroll} onMouseDown={this.handleMouseDownOnMenu}>
 							{this.renderMenu(options, !this.props.multi ? valueArray : null, focusedOption)}
 						</div>
